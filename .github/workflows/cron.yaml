@@ -3,7 +3,7 @@ name: CRON TEST
 on:
   schedule:
     # Runs "at every minute" (see https://crontab.guru)
-    - cron: '20 * * * *'
+    - cron: '* * * * *'
 
 jobs:
   # This workflow contains a single job called "build"
@@ -15,5 +15,6 @@ jobs:
     steps:
       # Runs a single command using the runners shell
       - name: Run scripts
-        run: echo Hello, world!
-        run: python mnist.py
+        run: | 
+          echo Hello, world!
+          python mnist.py
