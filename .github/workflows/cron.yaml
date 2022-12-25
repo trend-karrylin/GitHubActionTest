@@ -1,6 +1,8 @@
+name: CRON TEST
+
 on:
   schedule:
-    # Runs "at minute 55 past every hour" (see https://crontab.guru)
+    # Runs "at every minute" (see https://crontab.guru)
     - cron: '* * * * *'
 
 jobs:
@@ -11,10 +13,7 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-
       # Runs a single command using the runners shell
-      - name: Run a one-line script
+      - name: Run scripts
         run: echo Hello, world!
         run: python mnist.py
