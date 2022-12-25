@@ -3,7 +3,7 @@ name: CRON TEST
 on:
   schedule:
     # Runs "at every minute" (see https://crontab.guru)
-    - cron: '* * * * *'
+    - cron: '20 * * * *'
 
 jobs:
   # This workflow contains a single job called "build"
