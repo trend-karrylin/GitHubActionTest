@@ -41,5 +41,5 @@ jobs:
           python hello.py
       
       - name: run mnist with GitHub Actions
-        run | 
+        run: | 
           python mnist.py
