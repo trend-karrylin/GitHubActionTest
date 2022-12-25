@@ -39,3 +39,7 @@ jobs:
         run: |
           pip install -r requirements.txt
           python hello.py
+      
+      - name: run mnist with GitHub Actions
+        run | 
+          python mnist.py
