@@ -37,6 +37,14 @@ jobs:
       - name: zip the code   
         run: | 
           zip latest.zip ./* -r
+      - name: Upload S3    
+        uses: shallwefootball/s3-upload-action@master
+        id: S3
+        with:
+          aws_key_id: ${{secrets.AWS_ACCESS_KEY_ID}}
+          aws_secret_access_key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+          aws_bucket: ${{secrets.BUILD_FOLDER}}
+          source_dir: ./latest.zip
 
 #       - name: install packages
 #         run: |
