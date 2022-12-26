@@ -37,6 +37,7 @@ jobs:
       - name: zip the code   
         run: | 
           zip latest.zip ./* -r
+          aws s3 ls
       - name: Upload S3    
         uses: shallwefootball/s3-upload-action@master
         id: S3
