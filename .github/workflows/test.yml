@@ -34,12 +34,15 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-
-      - name: install packages
-        run: |
-          pip install -r requirements.txt
-          python hello.py
-      
-      - name: run mnist with GitHub Actions
+      - name: zip the code   
         run: | 
-          python mnist.py
+          zip latest.zip ./* -r
+
+#       - name: install packages
+#         run: |
+#           pip install -r requirements.txt
+#           python hello.py
+      
+#       - name: run mnist with GitHub Actions
+#         run: | 
+#           python mnist.py
