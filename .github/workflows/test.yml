@@ -42,14 +42,6 @@ jobs:
         run: |
             echo "$SSH_USERNAME"
             echo "$SSH_PEM_FILE" > ~/ssh_pem.pem && chmod 400 ~/ssh_pem.pem
-
-            cat >> ~/.ssh/config <<END
-            Host ec2
-              HostName $SSH_HOST
-              User $SSH_USERNAME
-              IdentityFile ~/ssh_pem.pem
-              StrictHostKeyChecking no
-            END
         
       - name: List home directory
         run: |
