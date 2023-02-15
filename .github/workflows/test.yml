@@ -50,10 +50,8 @@ jobs:
               IdentityFile ~/ssh_pem.pem
               StrictHostKeyChecking no
             END
-
-            cat ~/.ssh/config
         
       - name: List home directory
         run: |
-          ssh -v ec2 "ls -la. && pwd"
+          ssh -v -o StrictHostKeyChecking=no -i ssh_pem.pem "$SSH_USERNAME"@"$SSH_HOST" "ls -la. && pwd"
 
