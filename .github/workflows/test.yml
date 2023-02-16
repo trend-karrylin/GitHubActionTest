@@ -48,5 +48,5 @@ jobs:
       - name: List home directory
         run: |
           sudo apt-get install openssh-client -y
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/ssh_pem.pem "$SSH_USERNAME"@"$SSH_HOST" "ls -la && pwd"
+          ssh -v -i ~/.ssh/ssh_pem.pem ubuntu@34.227.91.66 "ls -la && pwd"
 
