@@ -40,10 +40,11 @@ jobs:
           SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
               
         run: |
+            mkdir -p ~/.ssh
             echo "$SSH_USERNAME"
-            echo "$SSH_PEM_FILE" >> ~/ssh_pem.pem && chmod 400 ~/ssh_pem.pem
+            echo "$SSH_PEM_FILE" >> ~/.ssh/ssh_pem.pem && chmod 600 ~/.ssh/ssh_pem.pem
         
       - name: List home directory
         run: |
-          ssh -v -o StrictHostKeyChecking=no -i "~/ssh_pem.pem" "$SSH_USERNAME"@"$SSH_HOST" "ls -la. && pwd"
+          ssh -v -o StrictHostKeyChecking=no -i "~/.ssh/ssh_pem.pem" "$SSH_USERNAME"@"$SSH_HOST" "ls -la. && pwd"
 
