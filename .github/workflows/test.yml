@@ -33,6 +33,7 @@ jobs:
 #         run: | 
 #           zip latest.zip ./* -r
 #           aws s3 ls
+
       - name: ssh to aws
         env:
           ACTION_TEST_PEM: ${{secrets.ACTION_TEST_PEM}}
@@ -42,7 +43,7 @@ jobs:
         run: |
             mkdir -p ~/.ssh
             echo "$SSH_USERNAME"
-            echo "$SSH_PEM_FILE" >> ~/.ssh/ssh_pem.pem && chmod 600 ~/.ssh/ssh_pem.pem
+            echo "$ACTION_TEST_PEM" >> ~/.ssh/ssh_pem.pem && chmod 600 ~/.ssh/ssh_pem.pem
         
       - name: List home directory
         run: |
