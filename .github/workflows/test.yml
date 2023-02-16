@@ -46,5 +46,5 @@ jobs:
         
       - name: List home directory
         run: |
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/ssh_pem.pem "$SSH_USERNAME"@"$SSH_HOST" "ls -la. && pwd"
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/ssh_pem.pem "$SSH_USERNAME"@"$SSH_HOST" "ls -la && pwd"
 
