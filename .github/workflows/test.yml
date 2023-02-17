@@ -49,5 +49,5 @@ jobs:
       - name: List home directory
         run: |
           sudo apt-get install openssh-client -y
-          ssh -v ec2 "mkdir test && ls -al"
+          ssh -v ec2 "mkdir -p test && ls -al"
 
