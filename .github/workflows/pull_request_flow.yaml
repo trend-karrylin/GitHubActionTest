@@ -1,0 +1,55 @@
+# a github action yaml, which will be triggered when a PR is created or updated
+# which will initiate a docker image and execute steps that stored in the Makefile
+# and finally deploy the generated result to aws cloudformation
+
+
+# it will run the following steps:
+name: pull_request_deploy
+
+on: [pull_request, workflow_dispatch]
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set Pull Request Number
+        run: | 
+            echo "PR_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+            echo $PR_NUMBER
+      
+      - name: install required packages
+        run: |
+          pip install -r requirements.txt
+      
+      - name: run mnist with GitHub Actions
+        run: | 
+          python mnist.py
+
+      # - name: Set up Docker
+      #   uses: docker/setup-buildx-action@v1
+
+      # - name: Build and tag Docker image
+      #   run: docker build -t my-docker-image .
+
+      # - name: Execute steps from Makefile
+      #   run: make -f Makefile <insert-target-name-here>
+    
+      # - name: Configure AWS credentials
+      #   uses: aws-actions/configure-aws-credentials@v1
+      #   with:
+      #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     aws-region: your-aws-region
+
+      # # the following steps will deploy the generated result to aws cloudformation
+      # # the cloudformation template file is stored in the repo, named deploy.yaml
+      # # the 
+      # - name: Deploy to AWS CloudFormation
+      #   run: |
+      #     aws cloudformation create-stack \
+      #       --stack-name service-cloud-accounts-${PR_NUMBER} \
+      #       --template-body ./deploy.yaml \
+      #       --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM
